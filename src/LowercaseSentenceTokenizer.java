@@ -30,19 +30,38 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    * @return a list of tokens, where each token is a word or a period
    */
   public List<String> tokenize(Scanner scanner) {
+    // list of valid tokens
     List<String> tokenized = new ArrayList<>();
     // custom delimiter pieced together with a lot of research
     scanner.useDelimiter("[\\s]+");
+    // set all characters to lowercase
     while(scanner.hasNext()) { tokenized.add(scanner.next().toLowerCase()); }
+    // empty String for manipulation
     String newToken;
-    // for each
-    for (String token : tokenized) {
-      if (token.charAt(token.length()) == '.' && token.length() > 1) {
-        newToken = token.substring(0, token.length() - 1);
-        tokenized.set(tokenized.indexOf(token), newToken);
-        tokenized.add(tokenized.indexOf(token) + 1, ".");
+    // for increment
+    for (int i = 0; i < tokenized.size(); i++) {
+      if (tokenized.get(i).charAt(tokenized.get(i).length() - 1) == '.' &&
+      tokenized.get(i).length() > 1) {
+        newToken = tokenized.get(i).substring(0, tokenized.get(i).length() - 1);
+        tokenized.set(i, newToken);
+        tokenized.add(i + 1, ".");
       }
     }
+
+    // for each
+    // (!) 
+    // does not work because for each loops depend on a constant structure size,
+    // unlike for increment loops
+    /*
+    for (String token : tokenized) {
+      if (token.charAt(token.length() - 1) == '.' && token.length() > 1) {
+        int index = tokenized.indexOf(token);
+        newToken = token.substring(0, token.length() - 1);
+        tokenized.set(index, newToken);
+        tokenized.add(index + 1, ".");
+      }
+    }
+      */
     return tokenized;
   }
 }
