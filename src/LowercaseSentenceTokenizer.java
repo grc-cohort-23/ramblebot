@@ -32,8 +32,17 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
   public List<String> tokenize(Scanner scanner) {
     List<String> tokenized = new ArrayList<>();
     // custom delimiter pieced together with a lot of research
-    scanner.useDelimiter("(?i)(?<!dr|mr|ms|mrs)[.\\s]+");
+    scanner.useDelimiter("[\\s]+");
     while(scanner.hasNext()) { tokenized.add(scanner.next().toLowerCase()); }
+    String newToken;
+    // for each
+    for (String token : tokenized) {
+      if (token.charAt(token.length()) == '.' && token.length() > 1) {
+        newToken = token.substring(0, token.length() - 1);
+        tokenized.set(tokenized.indexOf(token), newToken);
+        tokenized.add(tokenized.indexOf(token) + 1, ".");
+      }
+    }
     return tokenized;
   }
 }
