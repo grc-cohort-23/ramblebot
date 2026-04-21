@@ -56,7 +56,7 @@ public class UnigramWordPredictor implements WordPredictor {
     // loop through list using incremental for loop
     for (int i = 0; i < trainingWords.size(); i++) {
       if (!neighborMap.containsKey(trainingWords.get(i))) {
-        neighborMap.put(trainingWords.get(i), new ArrayList<String>());
+        neighborMap.put(trainingWords.get(i), new ArrayList<>());
       }
       if (i < trainingWords.size() - 1) {
         neighborMap.get(trainingWords.get(i)).add(trainingWords.get(i + 1));
