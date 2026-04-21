@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -51,7 +52,30 @@ public class UnigramWordPredictor implements WordPredictor {
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
-    // TODO: Convert the trainingWords into neighborMap here
+    // empty neighborMap
+    Map<String, List<String>> neighborMap = new HashMap<>();
+
+    // loop through list, enter keys and values into map
+    for (String word : trainingWords) {
+      String leftNeighbor = "";
+      String rightNeighbor = "";
+      // prevents index reaching into negatives
+      if (trainingWords.indexOf(word) > 0) {
+        leftNeighbor = trainingWords.get(trainingWords.indexOf(word) - 1);
+      }
+      // prevents index reaching past size
+      if (trainingWords.indexOf(word) < trainingWords.size()) {
+        rightNeighbor = trainingWords.get(trainingWords.indexOf(word) + 1);
+      }
+      // if does not contain key, add as key with values preset
+      // else update value
+      if (!neighborMap.containsKey(word)) {
+        neighborMap.put(word, List.of());
+        
+      } else {
+
+      }
+    }
   }
 
   /**
