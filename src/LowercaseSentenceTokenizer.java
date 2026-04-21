@@ -38,7 +38,13 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
 
     for (String str : strArray) {
       if (str.trim() != "") {
-        tokens.add(str.trim());
+        if (str.trim().endsWith(".")) {
+          String token = str.trim().substring(0, str.trim().length() - 1).toLowerCase();
+          tokens.add(token);
+          tokens.add(".");
+        } else {
+          tokens.add(str.trim().toLowerCase());
+        }
       }
     }
     
