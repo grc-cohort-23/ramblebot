@@ -57,7 +57,7 @@ public class UnigramWordPredictor implements WordPredictor {
     for (String word : trainingWords) {
       // if does not contain key, add as key with values preset
       if (!neighborMap.containsKey(word)) {
-        neighborMap.put(word, List.of());
+        neighborMap.put(word, new ArrayList<>());
       }
       // update values every time
       // prevents index reaching into negatives
@@ -65,7 +65,7 @@ public class UnigramWordPredictor implements WordPredictor {
         neighborMap.get(word).add(trainingWords.get(trainingWords.indexOf(word) - 1));
       }
       // prevents index reaching past size
-      if (trainingWords.indexOf(word) < trainingWords.size()) {
+      if (trainingWords.indexOf(word) < trainingWords.size() - 1) {
         neighborMap.get(word).add(trainingWords.get(trainingWords.indexOf(word) + 1));
       }
     }
