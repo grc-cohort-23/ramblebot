@@ -115,6 +115,7 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> posibleNextWords = neighborMap.get(lastWord);
     int ammountOfPosibleWords = posibleNextWords.size();
 
+    //Stoped here,  get the random working to find the next word.
     return nextWord;
   }
   
