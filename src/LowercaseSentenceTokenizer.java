@@ -31,31 +31,35 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    */
   public List<String> tokenize(Scanner scanner) {
     // TODO: Implement this function to convert the scanner's input to a list of words and periods
-    List<String> tokens = new ArrayList<>();
+    List<String> tokens = new ArrayList<>(); 
     while(scanner.hasNext()){
         String temp = scanner.next();
         
+        //this loop will check the last character of every word for a '.' 
+        //and if one is found it will replace it in the word with an empty space and then add the cleaned word and a separate '.' to the return list.
         if(temp.charAt(temp.length()-1) == '.'){ 
           temp = temp.replace('.', ' ');
           temp = temp.trim();
 
-          tokens.add(temp);
+          tokens.add(temp.toLowerCase());
           tokens.add(".");
         }
         else
-        tokens.add(temp);
+        tokens.add(temp.toLowerCase());
     }
-    System.out.println("HELLO" + " " + tokens.toString());
 
     return tokens;
   }
 
-      // public static void main(String[] args) {
+      public static void main(String[] args) {
       
-      //   Tokenizer tokenizer = new LowercaseSentenceTokenizer();
-      //   Scanner scanner = new Scanner("Hello world. This is Dr.Smith's example.");
-      //   System.out.print(tokenizer.tokenize(scanner).toString());
-      // }
-}
+        Tokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("Hello world. This is Dr.Smith's example.");
+        System.out.print(tokenizer.tokenize(scanner).toString());
+        WordPredictor u = new UnigramWordPredictor(tokenizer);
+        u.train(scanner);
+      }
+
+    }
 
 
