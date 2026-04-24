@@ -116,7 +116,20 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    if (context == null || context.size() == 0 || neighborMap == null) {
+      return null;
+    }
+
+    String lastWord = context.get(context.size() - 1).toLowerCase();
+
+    List<String> neighbors = neighborMap.get(lastWord);
+
+    if (neighbors == null || neighbors.size() == 0) {
+      return null;
+    }
+
+    int randomIndex = (int) (Math.random() * neighbors.size());
+    return neighbors.get(randomIndex);
   }
   
   /**
