@@ -64,24 +64,6 @@ public class UnigramWordPredictor implements WordPredictor {
     }
   }
 
-  /*
-    // loop through list, enter keys and values into map
-    for (String word : trainingWords) {
-      // if does not contain key, add as key with values preset
-      if (!neighborMap.containsKey(word)) {
-        neighborMap.put(word, new ArrayList<>());
-      }
-      // update values every time
-      // prevents index reaching into negatives
-      if (trainingWords.indexOf(word) > 0) {
-        neighborMap.get(word).add(trainingWords.get(trainingWords.indexOf(word) - 1));
-      }
-      // prevents index reaching past size
-      if (trainingWords.indexOf(word) < trainingWords.size() - 1) {
-        neighborMap.get(word).add(trainingWords.get(trainingWords.indexOf(word) + 1));
-      }
-    } */
-
   /**
    * Predicts the next word based on the given context.
    * The prediction is made by randomly selecting from all words 
@@ -129,6 +111,7 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
+
     return null;
   }
   
