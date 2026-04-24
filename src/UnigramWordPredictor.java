@@ -60,6 +60,9 @@ public class UnigramWordPredictor implements WordPredictor {
         List<String> strList = new ArrayList<>();
         neighborMap.put(currentStr, strList);
         strList.add(nextStr);
+      } else {
+        List<String> exisitingList = neighborMap.get(currentStr);
+        exisitingList.add(nextStr);
       }
     }
   }
