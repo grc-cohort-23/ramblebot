@@ -57,6 +57,10 @@ Sometimes this button takes a little bit to show up when you first open VS Code.
 1. As of 4/16/26 the testing extension in VS COde is not working with our setup. We will run tests on the command line instead. Use this command:
     ```
     javac -cp lib/junit-platform-console-standalone-1.11.4.jar src/*.java && java -jar lib/junit-platform-console-standalone-1.11.4.jar --class-path src --scan-class-path
+
+THIS WORKED FOR ME I THINK
+    javac -cp lib/junit-platform-console-standalone-1.11.4.jar src/*.java
+java -jar lib/junit-platform-console-standalone-1.11.4.jar --class-path src --scan-class-path
     ```
 1. You should expect to see all the tests fail. This is good! You haven't written your solution yet, so it's expected for them to fail.
 1. Validate that you can push to your repo by making any change to this README, adding, committing, and pushing it.

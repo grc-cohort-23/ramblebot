@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -49,9 +51,23 @@ public class UnigramWordPredictor implements WordPredictor {
    * @param scanner the Scanner to read the training text from
    */
   public void train(Scanner scanner) {
+
+    Scanner scanner2 = new Scanner("Hello Hello Hello world. This is Dr.Smith's example.");
+
     List<String> trainingWords = tokenizer.tokenize(scanner);
+    neighborMap = new HashMap<String, List<String>>();
 
     // TODO: Convert the trainingWords into neighborMap here
+    for(int i = 0; i < trainingWords.size(); i++){
+      if(!neighborMap.keySet().contains(trainingWords.get(i))){
+        neighborMap.put(trainingWords.get(i), new ArrayList<String>());
+      }
+      if(i > 0){
+        List list = neighborMap.get(trainingWords.get(i-1));
+        list.add(trainingWords.get(i));
+        neighborMap.put(trainingWords.get(i-1), list);
+      }
+    }
   }
 
   /**
@@ -99,9 +115,38 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
+
+    
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    
+    String word = "";
+    if(context.size() == 0){
+
+      Random rand = new Random();
+      int r = rand.nextInt(neighborMap.size());
+      Set<String> set = neighborMap.keySet();
+      int i = 0;
+
+      for(String s : set){
+        if(i == r){
+          word = s;
+          break;
+        }
+        i++;
+      }
+    }
+    else{
+      word = context.get(context.size() -1);
+    }
+
+
+    List<String> neighbors = neighborMap.get(word);
+    if (neighbors == null || neighbors.isEmpty() ) {
+     return "";
+    }
+    int randWordIdx = new Random().nextInt(neighborMap.get(word).size());
+    return neighborMap.get(word).get(randWordIdx);
   }
   
   /**
