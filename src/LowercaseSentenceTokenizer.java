@@ -35,8 +35,14 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
     // scan word while loop
     while (scanner.hasNext()) {
       //this will get the next word in
-      String word = scanner.next();
-      tokenIt.add(word);
+      String word = scanner.next().toLowerCase(); //now we handle lowercase to pass test
+      //now we conditional check for period
+      if (word.endsWith(".") && word.length() > 1) {
+        tokenIt.add(word.substring(0, word.length() - 1));
+        tokenIt.add(".");
+      } else { // if not
+        tokenIt.add(word);
+      }
     }
     return tokenIt;
   }
