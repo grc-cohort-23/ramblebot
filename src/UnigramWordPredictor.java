@@ -112,6 +112,10 @@ public class UnigramWordPredictor implements WordPredictor {
     // Hint: only the last word in context should be looked at
     String lastWord = context.get(context.size() - 1);
     List<String> neighbors = neighborMap.get(lastWord);
+
+    if (neighbors == null || neighbors.isEmpty()) {
+      return null;
+    }
   }
   
   /**
