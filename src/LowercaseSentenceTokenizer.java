@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -29,8 +30,22 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    * @return a list of tokens, where each token is a word or a period
    */
   public List<String> tokenize(Scanner scanner) {
-    // TODO: Implement this function to convert the scanner's input to a list of words and periods
-    return null;
+    List<String> tokens = new ArrayList<>();
+    
+    while (scanner.hasNextLine()) {
+      for (String token : scanner.nextLine().toLowerCase().split("\\s+")) {
+      // Source for using "\\s+" to split on one or more whitespace characters:
+      //  https://stackoverflow.com/questions/225337/how-to-split-a-string-with-any-whitespace-chars-as-delimiters
+      if (token.endsWith(".")){
+        tokens.add(token.substring(0, token.length() - 1));
+        tokens.add(".");  
+      }else {
+        tokens.add(token);
+      }
+    }
   }
+    return tokens;
+  }
+
 }
 
