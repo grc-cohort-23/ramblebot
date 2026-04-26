@@ -16,9 +16,14 @@ class LowercaseSentenceTokenizerTest {
     }
 
     // Wave 2
-    /*
-     * Write your test here!
-     */
+    @Test
+    void testTokenizeWithManySpaces() {
+        LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("i     have too      many    spaces here and there    and kinda           um everywhere");
+        List<String> tokens = tokenizer.tokenize(scanner);
+
+        assertEquals(List.of("i", "have", "too", "many", "spaces", "here", "and", "there", "and", "kinda", "um", "everywhere"), tokens);
+    }
     
 
     // Wave 3
