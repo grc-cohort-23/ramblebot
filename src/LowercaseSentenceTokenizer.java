@@ -31,7 +31,9 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    */
   public List<String> tokenize(Scanner scanner) {
     List<String> tokens = new ArrayList<>();
-    for (String token : scanner.nextLine().toLowerCase().split("\\s+")) {
+    
+    while (scanner.hasNextLine()) {
+      for (String token : scanner.nextLine().toLowerCase().split("\\s+")) {
       // Source for using "\\s+" to split on one or more whitespace characters:
       //  https://stackoverflow.com/questions/225337/how-to-split-a-string-with-any-whitespace-chars-as-delimiters
       if (token.endsWith(".")){
@@ -41,7 +43,9 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
         tokens.add(token);
       }
     }
+  }
     return tokens;
   }
+
 }
 
