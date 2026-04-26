@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -52,6 +48,22 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // TODO: Convert the trainingWords into neighborMap here
+    // going to use hashmap
+    this.neighborMap = new HashMap<>();
+
+    // only searching for second to last word
+    for (int i = 0; i < trainingWords.size() - 1; i++) {
+      String current = trainingWords.get(i);
+      String nextWord = trainingWords.get(i + 1);
+
+      // if the key isnt there, then there will be a list made
+      if (!neighborMap.containsKey(current)) {
+        neighborMap.put(current, new ArrayList<>());
+      }
+
+      // next word then gets added to current
+      neighborMap.get(current).add(nextWord);
+    }
   }
 
   /**
@@ -101,7 +113,25 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    //null check time
+    if (context == null || context.isEmpty()) {
+      return null;
+    }
+
+    // last word set up
+    String lastWord = context.get(context.size() - 1);
+
+    // if check for last work inside neighbor map
+    if (!neighborMap.containsKey(lastWord)) {
+      return null;
+    }
+
+    //Start list for potentials
+    List<String> potentialNextWords = neighborMap.get(lastWord);
+
+    Random randy = new Random();
+    int randomIndex = randy.nextInt(potentialNextWords.size());
+    return potentialNextWords.get(randomIndex);
   }
   
   /**

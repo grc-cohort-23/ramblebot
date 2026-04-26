@@ -1,0 +1,14 @@
+Enter the filename: e.txt
+Enter the number of words to generate: 101
+woah, oh, oh (for the longest) for the longest)
+for the longest) for the longest) for the longest time 
+woah, oh, oh oh (for the longest time woah, oh, oh oh 
+(for the longest time woah, oh, oh (for the longest) 
+for the longest time woah, oh, oh (for the longest time 
+woah, oh, oh (for the longest time woah, oh, oh 
+(for the longest) for the longest time woah, oh, oh 
+(for the longest time woah, oh, oh 
+(for the longest time woah, oh, oh 
+(for the longest time woah, oh, oh 
+(for the longest time woah, oh, oh 
+(for
