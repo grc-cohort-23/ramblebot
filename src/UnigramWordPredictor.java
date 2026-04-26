@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -52,6 +48,22 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // TODO: Convert the trainingWords into neighborMap here
+    // going to use hashmap
+    this.neighborMap = new HashMap<>();
+
+    // only searching for second to last word
+    for (int i = 0; i < trainingWords.size() - 1; i++) {
+      String current = trainingWords.get(i);
+      String nextWord = trainingWords.get(i + 1);
+
+      // if the key isnt there, then there will be a list made
+      if (!neighborMap.containsKey(current)) {
+        neighborMap.put(current, new ArrayList<>());
+      }
+
+      // next word then gets added to current
+      neighborMap.get(current).add(nextWord);
+    }
   }
 
   /**
