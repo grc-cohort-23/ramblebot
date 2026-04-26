@@ -60,6 +60,7 @@ Sometimes this button takes a little bit to show up when you first open VS Code.
     ```
 1. You should expect to see all the tests fail. This is good! You haven't written your solution yet, so it's expected for them to fail.
 1. Validate that you can push to your repo by making any change to this README, adding, committing, and pushing it.
+Testing to commit to my repo
 
 ## Understanding the Project
 
