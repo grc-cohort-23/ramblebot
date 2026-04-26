@@ -59,6 +59,7 @@ public class UnigramWordPredictor implements WordPredictor {
       // putIfAbsent will add the key with an empty list if it doesn't exist in the map
       // https://www.geeksforgeeks.org/java/hashmap-putifabsentkey-value-method-in-java-with-examples/
       neighborMap.putIfAbsent(currentWord, new ArrayList<>());
+      neighborMap.get(currentWord).add(nextWord);
     }
   }
 
