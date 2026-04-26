@@ -56,6 +56,9 @@ public class UnigramWordPredictor implements WordPredictor {
     for (int i = 0; i < trainingWords.size() - 1; i++) {
       String currentWord = trainingWords.get(i);
       String nextWord = trainingWords.get(i + 1);
+      // putIfAbsent will add the key with an empty list if it doesn't exist in the map
+      // https://www.geeksforgeeks.org/java/hashmap-putifabsentkey-value-method-in-java-with-examples/
+      neighborMap.putIfAbsent(currentWord, new ArrayList<>());
     }
   }
 
