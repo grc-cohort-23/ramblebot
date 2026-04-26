@@ -118,6 +118,11 @@ public class UnigramWordPredictor implements WordPredictor {
     String lastWord = context.get(context.size()-1);
     // Get the possible words after this word
     List<String> possibleWords = neighborMap.get(lastWord);
+    // If there is NO possible word after this, (a rare but possible case)
+    if (possibleWords == null) {
+      // Return the first word in the generation.
+      return context.get(0);
+    }
     // Get a random one of the possible words
     String predicted = possibleWords.get(random.nextInt(possibleWords.size()));
 

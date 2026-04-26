@@ -179,4 +179,28 @@ class UnigramWordPredictorTest {
             }
         }
     }
+    
+    /** 
+     * Test the predictNextWord method, ensuring that it does not
+     * not error in the event there are no possible words.
+     * 
+     * In this case, the word without any possible follow-up words
+     * is "." because there are never any words after it.
+     */
+    @Test
+    void testPredictNextWordWithNoPossibilities() {
+        FakeTokenizer fakeTokenizer = new FakeTokenizer(List.of("the","thing","."));
+        UnigramWordPredictor predictor = new UnigramWordPredictor(fakeTokenizer);
+
+        predictor.train(null); // FakeTokenizer ignores scanner
+
+        // The expected output of the predictor up until the problematic word.
+        List<String> context = List.of("the","thing",".");
+
+        // This should return the first word in the context: "the"
+        String actual = predictor.predictNextWord(context);
+       
+        // Assert
+        assertEquals("the", actual);
+    }
 }
