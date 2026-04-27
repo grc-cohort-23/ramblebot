@@ -50,6 +50,7 @@ public class UnigramWordPredictor implements WordPredictor {
    * @param scanner the Scanner to read the training text from
    */
   public void train(Scanner scanner) {
+    neighborMap = new HashMap<>();
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
    for (int i = 0; i < trainingWords.size() - 1; i++) { // Loop until the second to last word to avoid error
@@ -106,7 +107,8 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    List<String> neighbors = neighborMap.get(context); 
+    String lastWord = context.get(context.size() - 1); 
+    List<String> neighbors = neighborMap.get(lastWord); 
     if (neighbors == null || neighbors.isEmpty()) {
       return null; // No prediction can be made if there are no neighbors
     }
