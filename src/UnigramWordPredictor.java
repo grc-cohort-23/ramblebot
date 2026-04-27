@@ -51,7 +51,19 @@ public class UnigramWordPredictor implements WordPredictor {
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
-    // TODO: Convert the trainingWords into neighborMap here
+   neighborMap = new HashMap<>();
+
+   //then we loop through the list stopping one word before the end
+   // if the word isnt in our map yet then we add it 
+   for(int i = 0; i<trainingWords.size() - 1; i++){
+    String word = trainingWords.get(i);
+    String nextword = trainingWords.get(i+1);
+
+    //if word isnt in our map yet we add it with an empty  list
+    //and then we add the next word to the current words list
+    neighborMap.putIfAbsent(word, new ArrayList<>());
+    neighborMap.get(word).add(nextword);
+   }
   }
 
   /**
@@ -101,7 +113,17 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    //I will start by grabbing the last word in the input string
+    //then i'll get the list of possible next words from our map 
+    //and then I'll generate an index to hold the word and a new word
+    String lastWord = context.get(context.size()-1);
+    List<String> possibleNextWord = neighborMap.get(lastWord);
+    //by multiplying the possible words size by the random num float
+    //it guaranees I can generate a valid index number within the list
+    int randomIndex = (int)(Math.random()*possibleNextWord.size());
+
+    //retrieves and returns the randomly selected word from the list given it's random index
+    return possibleNextWord.get(randomIndex);
   }
   
   /**
