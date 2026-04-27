@@ -22,11 +22,13 @@ class LowercaseSentenceTokenizerTest {
     @Test 
     void testLowercaseSentenceTokenzier(){
         //arrange
-        
+        Scanner scanner = new Scanner("Hi this is my test ");
+
 
         //act 
 
         //assert
+        assertEquals(["Hi", "this", "is", "my", "test"],actual);
     }
     
 
