@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -51,7 +52,25 @@ public class UnigramWordPredictor implements WordPredictor {
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
-    // TODO: Convert the trainingWords into neighborMap here
+    // Convert the trainingWords into neighborMap here
+     neighborMap = new HashMap<>();
+    // loop through the map -> look at word -> then word next to it? for 
+    // i=0; i < length() of map, look at word and word next to it
+    // make a array list to add to the list of new word new ArrayList<>()
+    // stop when i at size - 1 so we can grab both words. i and i+1
+
+    for (int i = 0; i < trainingWords.size() - 1 ; i++) {
+      // grab i and i+1
+        String current = trainingWords.get(i);
+        String next = trainingWords.get(i + 1);
+
+        // if the list alr have the word, add tothe list
+        // if not, make a new list then add the word.
+        if (!neighborMap.containsKey(current)) {
+            neighborMap.put(current, new ArrayList<>());
+        }
+        neighborMap.get(current).add(next);
+    }
   }
 
   /**
@@ -99,9 +118,27 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
+    // Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    // use random = new Random();
+    // check last word to predict String lastWord = length()-1 or size()-1
+    // get the list that have the last word we want
+    // then use random to pick random [i] in the list we get -> random(list.legnth()) 
+    
+    String lastWord = context.get(context.size() - 1);
+
+    List<String> neighbors = neighborMap.get(lastWord);
+    // if word not see before -> no list/no predict -> return null
+    if (neighbors == null ){
+      return null;
+    }
+    Random random = new Random();
+    int index = random.nextInt(neighbors.size());
+
+
+
+    // return the pedict word, so [i] of the list
+    return neighbors.get(index);
   }
   
   /**

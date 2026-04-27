@@ -28,6 +28,7 @@ class UnigramWordPredictorTest {
     void testTrainAndGetNeighborMap() {
         // Use a fake tokenizer with predefined tokens
         FakeTokenizer fakeTokenizer = new FakeTokenizer(
+            //
             List.of("the", "cat", "sat", ".", "the", "cat", "slept", ".", "the", "dog", "barked", ".")
         );
         UnigramWordPredictor predictor = new UnigramWordPredictor(fakeTokenizer);
