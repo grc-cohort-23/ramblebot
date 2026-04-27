@@ -54,7 +54,7 @@ Sometimes this button takes a little bit to show up when you first open VS Code.
     Begin with Wave 1 in the instructions, and implement LowercaseSentenceTokenizer
     If you have implemented it, there's a bug in your code where it's returning null for the tokens.
     ```
-1. As of 4/16/26 the testing extension in VS COde is not working with our setup. We will run tests on the command line instead. Use this command:
+1. As of 4/16/26 the testing extension in VS Code is not working with our setup. We will run tests on the command line instead. Use this command:
     ```
     javac -cp lib/junit-platform-console-standalone-1.11.4.jar src/*.java && java -jar lib/junit-platform-console-standalone-1.11.4.jar --class-path src --scan-class-path
     ```
