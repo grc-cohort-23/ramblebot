@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 /**
  * A tokenizer that converts text input to lowercase and splits it 
  * into a list of tokens, where each token is either a word or a period.
