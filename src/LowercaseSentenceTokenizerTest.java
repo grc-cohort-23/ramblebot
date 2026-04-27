@@ -16,10 +16,13 @@ class LowercaseSentenceTokenizerTest {
     }
 
     // Wave 2
-    /*
-     * Write your test here!
-     */
-    
+   @Test
+   void testTokenizeWithLotsOfSpaces() { 
+    LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer(); 
+    Scanner scanner = new Scanner("hehe      spaces     lots      meomeo     ilovecats"); //lots of spaces btween words
+    List<String> tokens = tokenizer.tokenize(scanner); //
+    assertEquals(List.of("hehe", "spaces", "lots", "meomeo", "ilovecats"), tokens); //should ignore extra spaces and only return the words as tokens
+   }
 
     // Wave 3
     @Test
