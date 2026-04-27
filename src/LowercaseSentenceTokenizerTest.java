@@ -19,6 +19,15 @@ class LowercaseSentenceTokenizerTest {
     /*
      * Write your test here!
      */
+    @Test 
+    void testLowercaseSentenceTokenzier(){
+        //arrange
+        
+
+        //act 
+
+        //assert
+    }
     
 
     // Wave 3
