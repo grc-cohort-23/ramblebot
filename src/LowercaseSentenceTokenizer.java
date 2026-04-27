@@ -31,9 +31,13 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    * @return a list of tokens, where each token is a word or a period
    */
   public List<String> tokenize(Scanner scanner) {
+
+
       //used this old stackoverflow post to help use regex instead of whitespace to remove the double space
       //https://stackoverflow.com/questions/3958955/how-to-remove-duplicate-white-spaces-in-string-using-java
-        List<String> returnTokens = new ArrayList<String>(Arrays.asList(scanner.nextLine().split("\\s+")));
+      //https://stackoverflow.com/questions/8020848/how-is-the-and-or-operator-represented-as-in-regular-expressions
+        String regexArr= "^\\s\\.|\\s";
+        List<String> returnTokens = new ArrayList<String>(Arrays.asList(scanner.nextLine().split(regexArr)));
     return returnTokens;
   }
 }
