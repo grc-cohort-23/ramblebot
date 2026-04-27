@@ -117,9 +117,13 @@ public class UnigramWordPredictor implements WordPredictor {
     //then i'll get the list of possible next words from our map 
     //and then I'll generate an index to hold the word and a new word
     String lastWord = context.get(context.size()-1);
-    List<String> possibleNextWord = neighborMap.get(lastword);
+    List<String> possibleNextWord = neighborMap.get(lastWord);
+    //by multiplying the possible words size by the random num float
+    //it guaranees I can generate a valid index number within the list
+    int randomIndex = (int)(Math.random()*possibleNextWord.size());
 
-    return null;
+    //retrieves and returns the randomly selected word from the list given it's random index
+    return possibleNextWord.get(randomIndex);
   }
   
   /**
