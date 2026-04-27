@@ -36,8 +36,9 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
         String word = scanner.next().toLowerCase();
         // if word end with a . "meomeo." -> take period off using word.length -1 -> word only
         // meomeo. will be meomeo and .
+        
         if (word.endsWith(".")) {
-          tokens.add(word.substring(0, word.length()-1));
+          tokens.add(word.substring(0, word.length() - 1));
           // add a period by it self
           tokens.add(".");
         } else {

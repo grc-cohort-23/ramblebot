@@ -66,9 +66,6 @@ public class UnigramWordPredictor implements WordPredictor {
 
         // if the list alr have the word, add tothe list
         // if not, make a new list then add the word.
-        // I want A cat a kitty
-        // it should make a {cat, kitty}
-        //                cat {a }
         if (!neighborMap.containsKey(current)) {
             neighborMap.put(current, new ArrayList<>());
         }
