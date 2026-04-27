@@ -24,7 +24,6 @@ class LowercaseSentenceTokenizerTest {
         //arrange
          LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
         Scanner scanner = new Scanner("Hi This Is My Test ");
-       
         //act 
            List<String> actual = tokenizer.tokenize(scanner);
 
