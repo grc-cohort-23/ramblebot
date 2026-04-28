@@ -58,16 +58,9 @@ public class UnigramWordPredictor implements WordPredictor {
                 neighborMap.put(word, new ArrayList<>());
             }
         }
-        for(String word : neighborMap.keySet()) {
-            for(int i=0; i<trainingWords.size(); i++) {
-                if(trainingWords.get(i).equals(word)) {
-                    List<String> neighbours = neighborMap.get(word);
-                    if(i<=neighbours.size()) {
-                        neighbours.add(trainingWords.get(i+1));
-                    }
-
-                    neighborMap.put(word, neighbours);
-                }
+        for(int i=0;i<trainingWords.size();i++) {
+            if(i<trainingWords.size()-1) {
+                neighborMap.get(trainingWords.get(i)).add(trainingWords.get(i+1));
             }
         }
 
