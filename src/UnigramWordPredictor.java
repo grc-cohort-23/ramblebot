@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.random.*;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -111,9 +113,16 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
-    // Hint: only the last word in context should be looked at
-    return null;
+    Random rng = new Random();
+    String last = context.get(context.size() - 1);
+    List<String> next = neighborMap.get(last);
+    
+    if (next == null || next.isEmpty()) {
+      return null;
+    } else {
+      int index = rng.nextInt(next.size());
+      return next.get(index);
+    }
   }
   
   /**
