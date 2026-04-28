@@ -52,6 +52,21 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // TODO: Convert the trainingWords into neighborMap here
+    neighborMap = new HashMap<>();
+    int index = 0;
+
+    for (String str : trainingWords) {
+      if (index != trainingWords.size() - 1) {
+        int next = index + 1;
+        if (!neighborMap.containsKey(str)) {
+          neighborMap.put(str, new ArrayList<>());
+          neighborMap.get(str).add(trainingWords.get(next));
+        } else {
+          neighborMap.get(str).add(trainingWords.get(next));
+        }
+      }
+      index++;
+    }
   }
 
   /**
@@ -101,7 +116,20 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    if (context == null || context.isEmpty() || neighborMap == null) {
+      return null;
+    }
+
+    String lastWord = context.get(context.size() - 1).toLowerCase();
+
+    List<String> neighbors = neighborMap.get(lastWord);
+
+    if (neighbors == null || neighbors.isEmpty()) {
+      return null;
+    }
+
+    int randomIndex = (int) (Math.random() * neighbors.size());
+    return neighbors.get(randomIndex);
   }
   
   /**
