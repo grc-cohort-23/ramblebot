@@ -16,9 +16,14 @@ class LowercaseSentenceTokenizerTest {
     }
 
     // Wave 2
-    /*
-     * Write your test here!
-     */
+    @Test
+    void testTokenizeWithExtraWhiteSpace() {
+        LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("this    is a     sentence   with    lots of     whitespace");
+        List<String> tokens = tokenizer.tokenize(scanner);
+
+        assertEquals(List.of("this", "is", "a", "sentence", "with", "lots", "of", "whitespace"), tokens);
+    }
     
 
     // Wave 3
