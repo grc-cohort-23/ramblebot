@@ -113,7 +113,9 @@ public class UnigramWordPredictor implements WordPredictor {
     // Hint: only the last word in context should be looked at
 //      System.out.println("Contexts"+context);
 
-
+      if(neighborMap.get(context.getLast()).isEmpty()) {
+          return context.getLast();
+      }
 //      System.out.println(context.size());
 //      System.out.println("Random Number"+randomNum);
       //quick action told me to use getLast instead of size()-1
@@ -123,7 +125,7 @@ public class UnigramWordPredictor implements WordPredictor {
           int rng= (int) (Math.random()*neighbors.size());
           return neighbors.get(rng);
       }
-      return null;
+      return context.getLast();
   }
   
   /**
