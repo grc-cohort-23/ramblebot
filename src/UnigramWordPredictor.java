@@ -109,19 +109,18 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
+
     // Hint: only the last word in context should be looked at
 //      System.out.println("Contexts"+context);
-
-      if(neighborMap.get(context.getLast()).isEmpty()) {
-          return context.getLast();
-      }
 //      System.out.println(context.size());
 //      System.out.println("Random Number"+randomNum);
       //quick action told me to use getLast instead of size()-1
       if(neighborMap.containsKey(context.getLast())) {
-          List<String> neighbors = neighborMap.get(context.getLast());
           //https://www.w3schools.com/java/java_howto_random_number.asp
+          List<String> neighbors = neighborMap.get(context.getLast());
+          if(neighbors.isEmpty()) {
+              return null;
+          }
           int rng= (int) (Math.random()*neighbors.size());
           return neighbors.get(rng);
       }
