@@ -140,6 +140,7 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
     List<String> neighbors = neighborMap.get(lastWord);
     Random random = new Random();
     int index = random.nextInt(neighbors.size());
+    return neighbors.get(index);
    
   }
   
