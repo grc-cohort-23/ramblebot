@@ -1,0 +1,3 @@
+Enter the filename: fuzzyWuzzyBear.txt
+Enter the number of words to generate: 100
+fuzzy wuzzy had no hair fuzzy no, by gosh, it was a mouse iddy biddy had no hair fuzzy wuzzy wasn’t fuzzy wuzzy was a bear fuzzy wuzzy was a pity fuzzy wuzzy wasn’t silly willy wasn’t pretty oh, by gosh, it was a bear fuzzy wuzzy was he? silly willy wouldn’t squirm silly no, by god, he wasn’t, was a bear fuzzy no, by god, he wasn’t, was a bear fuzzy wuzzy wasn’t fuzzy wuzzy was he? silly no, by god, he wasn’t, was he? silly willy wouldn’t squirm silly willy wouldn’t squirm silly willy was a bear fuzzy
