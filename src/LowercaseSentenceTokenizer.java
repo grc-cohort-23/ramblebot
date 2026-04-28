@@ -36,6 +36,7 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
     String[] tokenWords = scanner.nextLine().trim().split("\\s+");
 
     for(String token : tokenWords){
+      token = token.toLowerCase();
       words.add(token);
     }
     return words;
