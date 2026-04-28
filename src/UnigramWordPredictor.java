@@ -52,13 +52,30 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // Declare map
-    HashMap<String, String> wordMap = new HashMap<>();
+    HashMap<String, List<String>> wordMap = new HashMap<>();
+    this.neighborMap = wordMap;
 
     // For each training word until the end
-    for (int i = 0; i < trainingWords.size() - 2; i++) {
-      
-      // Add into hashmap the word and the one next to it
-      wordMap.put(trainingWords.get(i), trainingWords.get(i+1));
+    for (int i = 0; i < trainingWords.size() - 1; i++) {
+
+      // Check if map contains key
+      if (!wordMap.containsKey(trainingWords.get(i))) {
+        // Make list to add
+        List<String> wordList = new ArrayList<>();
+
+        // Add next word
+        wordList.add(trainingWords.get(i+1));
+
+        // Add into hashmap the word and the one next to it
+        wordMap.put(trainingWords.get(i), wordList);
+      } else {
+        
+        // Else get the associated list, add the value, and put it back in
+        List<String> wordList = wordMap.get(trainingWords.get(i));
+        wordList.add(trainingWords.get(i+1));
+        wordMap.put(trainingWords.get(i), wordList);
+        
+      }
     }
 
   }
@@ -110,6 +127,11 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
+
+    String lastWord = context.getLast();
+
+    wordMap.get(lastWord);
+
     return null;
   }
   
