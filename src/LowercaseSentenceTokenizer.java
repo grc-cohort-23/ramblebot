@@ -33,12 +33,18 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
     // TODO: Implement this function to convert the scanner's input to a list of words and periods
     ArrayList<String> words = new ArrayList<>();
 
-    String[] tokenWords = scanner.nextLine().trim().split("\\s+");
+    String[] tokenWords = scanner.nextLine().trim().toLowerCase().split("\\s+");
 
     for(String token : tokenWords){
-      token = token.toLowerCase();
+      if(token.endsWith(".")){
+        words.add(token.substring(0, token.length() - 1));
+        words.add(".");
+      }
+      else{
+
       words.add(token);
     }
+  }
     return words;
   
   }
