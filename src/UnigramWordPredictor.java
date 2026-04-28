@@ -52,7 +52,7 @@ public class UnigramWordPredictor implements WordPredictor {
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
-    // TODO: Convert the trainingWords into neighborMap here
+    //  Convert the trainingWords into neighborMap here
     neighborMap = new HashMap<>();
   
 for (int i = 0; i < trainingWords.size() - 1; i++) {
@@ -123,7 +123,7 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
+    //  Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
     // context.get(context.size() - 1) // last word
     if( context.size() ==0){
@@ -138,6 +138,7 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
     }
     //get the next word
     List<String> neighbors = neighborMap.get(lastWord);
+    Random random = new Random();
    
   }
   
