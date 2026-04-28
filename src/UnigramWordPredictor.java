@@ -57,13 +57,18 @@ public class UnigramWordPredictor implements WordPredictor {
 for (int i = 0; i < trainingWords.size() - 1; i++) {
     String current = trainingWords.get(i);
     String next = trainingWords.get(i + 1);
-}else {
-  
+
+ if (neighborMap.containsKey(current)) {
+    List<String> list = neighborMap.get(current);
+    list.add(next);
+} else {
+ 
+}
 
 }
 
     }
-  }
+
 
   //neighborMap.containsKey(current)
 //neighborMap.get(current)
