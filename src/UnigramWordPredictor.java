@@ -125,7 +125,19 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
     // context.get(context.size() - 1) // last word
-    return null;
+    if( context.size() ==0){
+       return null;
+    
+    }
+    // get the last word 
+    String lastWord = context.get(context.size()-1);
+    // 
+    if(!neighborMap.containsKey(lastWord)){
+      return null;
+    }
+    //get the next word
+    List<String> neighbors = neighborMap.get(lastWord);
+   
   }
   
   /**
