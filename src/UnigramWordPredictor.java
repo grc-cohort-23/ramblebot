@@ -139,6 +139,7 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
     //get the next word
     List<String> neighbors = neighborMap.get(lastWord);
     Random random = new Random();
+    int index = random.nextInt(neighbors.size());
    
   }
   
