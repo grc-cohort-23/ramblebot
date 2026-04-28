@@ -124,6 +124,7 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
+    // context.get(context.size() - 1) // last word
     return null;
   }
   
