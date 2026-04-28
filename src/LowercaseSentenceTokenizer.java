@@ -45,7 +45,7 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
             if(word.endsWith(".")){
                 words.set(i,word.substring(0,word.length()-1));
                 words.add(i+1,".");
-                
+                i++;
 
             }
             else{
