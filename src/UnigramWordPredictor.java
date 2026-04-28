@@ -62,6 +62,7 @@ public class UnigramWordPredictor implements WordPredictor {
 
       if(!neighborMap.containsKey(current)){ // if map doesn't contain current word key yet, add it + list to populate with next words
         neighborMap.put(current, new ArrayList<>());
+        neighborMap.get(current).add(next); // adds first following word
 
   }
   else{
