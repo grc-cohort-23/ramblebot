@@ -19,6 +19,17 @@ class LowercaseSentenceTokenizerTest {
     /*
      * Write your test here!
      */
+    @Test 
+    void testLowercaseSentenceTokenzier(){
+        //arrange
+         LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("Hi This Is My Test ");
+        //act 
+           List<String> actual = tokenizer.tokenize(scanner);
+
+        //assert
+        assertEquals(List.of("hi", "this", "is", "my", "test"),actual);
+    }
     
 
     // Wave 3

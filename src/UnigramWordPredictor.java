@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * A class for predicting the next word in a sequence using a unigram model.
@@ -51,8 +52,31 @@ public class UnigramWordPredictor implements WordPredictor {
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
-    // TODO: Convert the trainingWords into neighborMap here
-  }
+    //  Convert the trainingWords into neighborMap here
+    neighborMap = new HashMap<>();
+  
+for (int i = 0; i < trainingWords.size() - 1; i++) {
+    String current = trainingWords.get(i);
+    String next = trainingWords.get(i + 1);
+
+ if (neighborMap.containsKey(current)) {
+    List<String> list = neighborMap.get(current);
+    list.add(next);
+} else {   List<String> list = new ArrayList<>();
+    list.add(next);
+    neighborMap.put(current, list);
+ 
+}
+
+}
+
+    }
+
+
+  //neighborMap.containsKey(current)
+//neighborMap.get(current)
+//neighborMap.put(current, listName)
+//listName.add(next)
 
   /**
    * Predicts the next word based on the given context.
@@ -99,9 +123,25 @@ public class UnigramWordPredictor implements WordPredictor {
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
+    //  Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
-    return null;
+    // context.get(context.size() - 1) // last word
+    if( context.size() ==0){
+       return null;
+    
+    }
+    // get the last word 
+    String lastWord = context.get(context.size()-1);
+    // 
+    if(!neighborMap.containsKey(lastWord)){
+      return null;
+    }
+    //get the next word
+    List<String> neighbors = neighborMap.get(lastWord);
+    Random random = new Random();
+    int index = random.nextInt(neighbors.size());
+    return neighbors.get(index);
+   
   }
   
   /**
