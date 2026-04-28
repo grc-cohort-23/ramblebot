@@ -61,7 +61,9 @@ for (int i = 0; i < trainingWords.size() - 1; i++) {
  if (neighborMap.containsKey(current)) {
     List<String> list = neighborMap.get(current);
     list.add(next);
-} else {
+} else {   List<String> list = new ArrayList<>();
+    list.add(next);
+    neighborMap.put(current, list);
  
 }
 
