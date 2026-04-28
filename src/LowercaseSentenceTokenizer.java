@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * A tokenizer that converts text input to lowercase and splits it 
@@ -29,8 +30,38 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    * @return a list of tokens, where each token is a word or a period
    */
   public List<String> tokenize(Scanner scanner) {
-    // TODO: Implement this function to convert the scanner's input to a list of words and periods
-    return null;
+
+    List<String> tokens = new ArrayList<>();
+
+   
+    while(scanner.hasNext()) {
+
+        String word = scanner.next();
+
+        if(word.endsWith(".")) {
+            String[] parts = word.split("(?=\\.)|(?<=\\.)");
+            //https://stackoverflow.com/questions/2206378/how-to-split-a-string-but-also-keep-the-delimiters#:~:text=You%20can%20use%20lookahead%20and,%2C%20c%2C%20;%2C%20d%5D
+            //I was lost trying to figure out how to keep the delimiter taht we are splitting the string with
+            //this method I was trying to use to split, throws away the period essentially
+            // word.split("\\.");
+            
+            //https://www.baeldung.com/java-split-string-keep-delimiters
+            //I was having trouble because I couldn't split while keeping the delimiters
+            //This source made me realize I can make a String[] of the parts of the whole word
+            //so "Word." = "word", ".",
+            //Then iterate through the parts to add the finniky period!
+            for (String part : parts) {
+                if(!part.isEmpty()) {
+                    tokens.add(part.toLowerCase());
+                }
+            }
+        } else {
+            tokens.add(word.toLowerCase());
+        }
+        
+    }
+
+    return tokens;
   }
 }
 
