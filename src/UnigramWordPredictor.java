@@ -50,18 +50,28 @@ public class UnigramWordPredictor implements WordPredictor {
    */
   public void train(Scanner scanner) {
     List<String> trainingWords = tokenizer.tokenize(scanner);
+    neighborMap= new HashMap<>();
+        for (String word : trainingWords) {
+            if(!neighborMap.containsKey(word)) {
+                neighborMap.put(word, new ArrayList<>());
+            }
+        }
+        for(int i=0;i<trainingWords.size();i++) {
+            if(i<trainingWords.size()-1) {
+                neighborMap.get(trainingWords.get(i)).add(trainingWords.get(i+1));
+            }
+        }
 
-    // TODO: Convert the trainingWords into neighborMap here
   }
 
   /**
    * Predicts the next word based on the given context.
-   * The prediction is made by randomly selecting from all words 
+   * The prediction is made by randomly selecting from all words
    * that follow the last word in the context in the training data.
-   * 
+   *
    * For example:
    * If the input text is: "The cat sat. The cat slept. The dog barked."
-   * 
+   *
    * The resulting map (neighborMap) would be:
    * {
    *   "the" -> ["cat", "cat", "dog"],
@@ -72,36 +82,49 @@ public class UnigramWordPredictor implements WordPredictor {
    *   "dog" -> ["barked"],
    *   "barked" -> ["."]
    * }
-   * 
-   * When predicting the next word given a context, the predictor should use 
-   * the neighbor map to select a word based on the observed frequencies in 
+   *
+   * When predicting the next word given a context, the predictor should use
+   * the neighbor map to select a word based on the observed frequencies in
    * the training data. For example:
-   * 
-   * - If the last word in the context is "the", the next word should be randomly chosen 
-   *   from ["cat", "cat", "dog"]. In this case, "cat" has a 2/3 probability 
-   *   of being selected, and "dog" has a 1/3 probability, reflecting the 
+   *
+   * - If the last word in the context is "the", the next word should be randomly chosen
+   *   from ["cat", "cat", "dog"]. In this case, "cat" has a 2/3 probability
+   *   of being selected, and "dog" has a 1/3 probability, reflecting the
    *   original distribution of words following "the" in the text.
-   * 
-   * - If the last word in the context is "cat", the next word should be randomly chosen 
+   *
+   * - If the last word in the context is "cat", the next word should be randomly chosen
    *   from ["sat", "slept"], giving each an equal 1/2 probability.
-   * 
-   * - If the last word in the context is ".", the next word should be randomly chosen 
-   *   from ["the", "the"], meaning "the" will always be selected 
+   *
+   * - If the last word in the context is ".", the next word should be randomly chosen
+   *   from ["the", "the"], meaning "the" will always be selected
    *   since it's the only option.
-   * 
-   * - If the last word in the context is "dog", the next word should be "barked" because 
+   *
+   * - If the last word in the context is "dog", the next word should be "barked" because
    *   "barked" is the only word that follows "dog" in the training data.
-   * 
-   * The probabilities of selecting each word should match the relative 
-   * frequencies of the words that follow in the original training data. 
-   * 
+   *
+   * The probabilities of selecting each word should match the relative
+   * frequencies of the words that follow in the original training data.
+   *
    * @param context a list of words representing the current context
    * @return the predicted next word, or null if no prediction can be made
    */
   public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
+
     // Hint: only the last word in context should be looked at
-    return null;
+//      System.out.println("Contexts"+context);
+//      System.out.println(context.size());
+//      System.out.println("Random Number"+randomNum);
+      //quick action told me to use getLast instead of size()-1
+      if(neighborMap.containsKey(context.getLast())) {
+          //https://www.w3schools.com/java/java_howto_random_number.asp
+          List<String> neighbors = neighborMap.get(context.getLast());
+          if(neighbors.isEmpty()) {
+              return null;
+          }
+          int rng= (int) (Math.random()*neighbors.size());
+          return neighbors.get(rng);
+      }
+      return context.getLast();
   }
   
   /**

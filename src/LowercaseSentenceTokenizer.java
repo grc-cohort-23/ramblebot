@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,8 +31,32 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
    * @return a list of tokens, where each token is a word or a period
    */
   public List<String> tokenize(Scanner scanner) {
-    // TODO: Implement this function to convert the scanner's input to a list of words and periods
-    return null;
+      //used this old stackoverflow post to help use regex instead of whitespace to remove the double space
+      //https://stackoverflow.com/questions/3958955/how-to-remove-duplicate-white-spaces-in-string-using-java
+      //https://stackoverflow.com/questions/8020848/how-is-the-and-or-operator-represented-as-in-regular-expressions
+
+      List<String> words= new ArrayList<>();
+      String regexArr= "\\s+";
+      while(scanner.hasNextLine()) {
+          String[] lineWords = scanner.nextLine().split(regexArr);
+          words.addAll(Arrays.asList(lineWords));
+      }
+        //used https://medium.com/@AlexanderObregon/checking-if-a-word-ends-with-a-certain-letter-in-java-a87768a13563 for endsWith()
+        for(int i=0;i< words.size();i++){
+            String word = words.get(i).toLowerCase();
+            if(word.endsWith(".")){
+                words.set(i,word.substring(0,word.length()-1));
+                words.add(i+1,".");
+                i++;
+
+            }
+            else{
+                words.set(i,word);
+            }
+        }
+
+
+    return words;
   }
 }
 
