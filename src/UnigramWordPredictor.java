@@ -55,11 +55,19 @@ public class UnigramWordPredictor implements WordPredictor {
     
       neighborMap = new HashMap<>();
 
-    for(int i = 0; i < trainingWords.size() - 1; i++){
+    for(int i = 0; i < trainingWords.size() - 1; i++){ // method inspo from GeeksForGeeks but all code original
+
       String current = trainingWords.get(i);
       String next = trainingWords.get(i+1);
 
+      if(!neighborMap.containsKey(current)){ // if map doesn't contain current word key yet, add it + list to populate with next words
+        neighborMap.put(current, new ArrayList<>());
+
   }
+  else{
+    neighborMap.get(current).add(next); // get key for current string and add next to the value List
+  }
+}
   }
   /**
    * Predicts the next word based on the given context.
