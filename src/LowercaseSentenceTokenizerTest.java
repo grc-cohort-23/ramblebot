@@ -16,10 +16,25 @@ class LowercaseSentenceTokenizerTest {
     }
 
     // Wave 2
-    /*
-     * Write your test here!
-     */
+    @Test 
+    void testTokenizeForWordEndsWithPeriod() {
+        LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("This is a sentence. With a word that ends with a period");
+        List<String> tokens = tokenizer.tokenize(scanner);
+
+        assertEquals(List.of("this", "is", "a", "sentence", ".", "with", "a", "word", "that", "ends", "with", "a", "period"), tokens);
+
+    }
     
+    // Wave 2
+    @Test 
+    void testTokenizeWithSpaces() {
+        LowercaseSentenceTokenizer tokenizer = new LowercaseSentenceTokenizer();
+        Scanner scanner = new Scanner("hello       This is a        sentence      with many spaces");
+        List<String> tokens = tokenizer.tokenize(scanner);
+
+        assertEquals(List.of("hello", "this", "is", "a", "sentence", "with", "many", "spaces"), tokens);
+    }
 
     // Wave 3
     @Test
