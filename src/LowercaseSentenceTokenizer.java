@@ -37,17 +37,13 @@ public class LowercaseSentenceTokenizer implements Tokenizer {
       word = word.toLowerCase();
 
       if(word.endsWith(".")){
-
+        //
+   inputList.add(word.substring(0, word.length() - 1));
         inputList.add(".");
       } else{
       inputList.add(word);
       }
     }
-
-
-
-
-    
 
     return inputList;
   }
