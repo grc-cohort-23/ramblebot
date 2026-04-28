@@ -72,10 +72,15 @@ public class UnigramWordPredictor implements WordPredictor {
         
         // Else get the associated list, add the value, and put it back in
         List<String> wordList = wordMap.get(trainingWords.get(i));
+
         wordList.add(trainingWords.get(i+1));
+
         wordMap.put(trainingWords.get(i), wordList);
-        
+
       }
+
+      System.out.println(neighborMap);
+      System.out.println(neighborMap.get("cat"));
     }
 
   }
@@ -130,9 +135,11 @@ public class UnigramWordPredictor implements WordPredictor {
 
     String lastWord = context.getLast();
 
-    wordMap.get(lastWord);
+    List<String> choiceList = neighborMap.get(lastWord);
 
-    return null;
+    int randIndex = (int) Math.random() * context.size();
+
+    return choiceList.get(randIndex);
   }
   
   /**
