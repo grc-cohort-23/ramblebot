@@ -53,7 +53,6 @@ public class UnigramWordPredictor implements WordPredictor {
 
     // Declare map
     HashMap<String, List<String>> wordMap = new HashMap<>();
-    this.neighborMap = wordMap;
 
     // For each training word until the end
     for (int i = 0; i < trainingWords.size() - 1; i++) {
@@ -79,8 +78,8 @@ public class UnigramWordPredictor implements WordPredictor {
 
       }
 
-      System.out.println(neighborMap);
-      System.out.println(neighborMap.get("cat"));
+      this.neighborMap = wordMap;
+      
     }
 
   }
@@ -137,7 +136,7 @@ public class UnigramWordPredictor implements WordPredictor {
 
     List<String> choiceList = neighborMap.get(lastWord);
 
-    int randIndex = (int) Math.random() * context.size();
+    int randIndex = (int) (Math.random() * neighborMap.get(lastWord).size());
 
     return choiceList.get(randIndex);
   }

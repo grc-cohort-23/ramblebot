@@ -173,6 +173,7 @@ class UnigramWordPredictorTest {
             for (String nextWord : expected.keySet()) {
                 double observedFrequency = counts.get(nextWord) / (double) trials;
                 double expectedFrequency = expected.get(nextWord);
+                
                 assertTrue(Math.abs(observedFrequency - expectedFrequency) < tolerance,
                         "Observed frequency of '" + nextWord + "' after '" + word +
                         "' was " + observedFrequency + ", expected " + expectedFrequency);
