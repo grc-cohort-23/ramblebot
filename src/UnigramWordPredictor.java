@@ -63,9 +63,8 @@ public class UnigramWordPredictor implements WordPredictor {
         container.add(nextWord);
         neighborMap.put(word, container);
       }
-      else{
-        neighborMap.get(word).add(nextWord);
-      }
+  neighborMap.get(word).add(nextWord);
+
     }
   }
 
