@@ -115,22 +115,22 @@ public class UnigramWordPredictor implements WordPredictor {
    * @param context a list of words representing the current context
    * @return the predicted next word, or null if no prediction can be made
    */
-  public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
-    // Hint: only the last word in context should be looked at
-    String predictedWord = "";
-    String lastWord = context.get(context.size() - 1).toLowerCase();
-    List<String> possibleNextWord = neighborMap.get(lastWord); //filter values by the context word
+   public String predictNextWord(List<String> context) {
+     // TODO: Return a predicted word given the words preceding it
+     // Hint: only the last word in context should be looked at
+     String lastWord = context.get(context.size() - 1).toLowerCase();
+     List<String> possibleNextWord = neighborMap.get(lastWord); //filter values by the context word
 
-    if(possibleNextWord == null || possibleNextWord.isEmpty()){ // finding cases where word is empty or doesn't exist
-      return null;
-    }
+       if (possibleNextWord == null || possibleNextWord.isEmpty()) {
+       return null;
+       }
+       else{
+       Random random = new Random();
+       int randomWord = random.nextInt(possibleNextWord.size()); // choose a value based on the context word
+       return possibleNextWord.get(randomWord);
+       }
 
-    Random random = new Random();
-    int randomWord = random.nextInt(possibleNextWord.size()); // choose a value based on the context word
-    predictedWord = possibleNextWord.get(randomWord);
-    return predictedWord;
-  }
+       }
   
   /**
    * Returns a copy of the neighbor map. The neighbor map is a mapping 
