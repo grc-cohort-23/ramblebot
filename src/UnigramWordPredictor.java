@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -52,8 +53,24 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // TODO: Convert the trainingWords into neighborMap here
-  }
+    
+      neighborMap = new HashMap<>();
 
+    for(int i = 0; i < trainingWords.size() - 1; i++){ // method inspo from GeeksForGeeks but all code original
+
+      String current = trainingWords.get(i);
+      String next = trainingWords.get(i+1);
+
+      if(!neighborMap.containsKey(current)){ // if map doesn't contain current word key yet, add it + list to populate with next words
+        neighborMap.put(current, new ArrayList<>());
+        neighborMap.get(current).add(next); // adds first following word
+
+  }
+  else{
+    neighborMap.get(current).add(next); // get key for current string and add next to the value List
+  }
+}
+  }
   /**
    * Predicts the next word based on the given context.
    * The prediction is made by randomly selecting from all words 
@@ -98,11 +115,22 @@ public class UnigramWordPredictor implements WordPredictor {
    * @param context a list of words representing the current context
    * @return the predicted next word, or null if no prediction can be made
    */
-  public String predictNextWord(List<String> context) {
-    // TODO: Return a predicted word given the words preceding it
-    // Hint: only the last word in context should be looked at
-    return null;
-  }
+   public String predictNextWord(List<String> context) {
+     // TODO: Return a predicted word given the words preceding it
+     // Hint: only the last word in context should be looked at
+     String lastWord = context.get(context.size() - 1).toLowerCase();
+     List<String> possibleNextWord = neighborMap.get(lastWord); //filter values by the context word
+
+       if (possibleNextWord == null || possibleNextWord.isEmpty()) {
+       return null;
+       }
+       else{
+       Random random = new Random();
+       int randomWord = random.nextInt(possibleNextWord.size()); // choose a value based on the context word
+       return possibleNextWord.get(randomWord);
+       }
+
+       }
   
   /**
    * Returns a copy of the neighbor map. The neighbor map is a mapping 
