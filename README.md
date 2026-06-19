@@ -4,6 +4,7 @@ A project to exercise Java, JUnit, git, GitHub, and code-reading skills. Student
 
 ## Expectations
 
+
 ### Academic Honesty
 
 THIS IS AN INDIVIDUAL PROJECT. The following is not allowed:
